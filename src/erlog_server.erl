@@ -39,13 +39,13 @@
 %%  we can specify the database module and initial argument to use.
 
 start_link() ->
-    gen_server:start_link(?MODULE, none, []).
+    gen_server:start_link({local, ?MODULE}, ?MODULE, none, []).
 
 start() ->
     gen_server:start(?MODULE, none, []).
 
 start_link(DbMod, DbArg) ->
-    gen_server:start_link(?MODULE, {DbMod,DbArg}, []).
+    gen_server:start_link({local, ?MODULE}, ?MODULE, {DbMod,DbArg}, []).
 
 start(DbMod, DbArg) ->
     gen_server:start(?MODULE, {DbMod,DbArg}, []).
