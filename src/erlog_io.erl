@@ -109,7 +109,7 @@ read(Io, P) ->
     end.
 
 scan_erlog_term(Io, Prompt, Line) ->
-    io:request(Io, {get_until,Prompt,erlog_scan,tokens,[Line]}).
+    io:request(Io, {get_until,unicode,Prompt,erlog_scan,tokens,[Line]}).
 
 %% read_string(String) -> {ok,Term} | {error,Error}.
 %%  Read a string. We add an extra space to be kind.
@@ -177,7 +177,7 @@ write_term1([H|T], _, Ops) ->
 write_term1([], _, _) -> "[]";
 write_term1({'{}',A}, _, #ops{ignore_ops=false}=Ops) ->
     [${,write_term1(A, 1200, Ops),$}];
-write_term1({'$VAR',N}, _, #ops{numbervars=true}=Ops)
+write_term1({'$VAR',N}, _, #ops{numbervars=true})
   when is_integer(N), N >= 0 ->
     %% Write as a variable name.
     U = $A + (N rem 26),                        %First uppercase

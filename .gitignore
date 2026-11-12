@@ -7,3 +7,4 @@
 _build/
 comp_opts.mk
 erl_crash.dump
+erlog_scan.erl
